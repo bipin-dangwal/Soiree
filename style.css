@@ -1,0 +1,232 @@
+#logo {
+	padding-top: 6px;
+	padding-right: 5px;
+	width: 11em;  
+	height: 3em;
+}
+
+.navbar{
+	margin-bottom: 0px;
+
+}
+#bg {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+ width: 100%%;
+	height: 100vh;
+	background: #e55d87;
+	background: -moz-linear-gradient(-45deg, #e55d87 0%, #5fc3e4 100%);
+	background: -webkit-linear-gradient(-45deg, #e55d87 0%, #5fc3e4 100%);
+	background: linear-gradient(135deg, #e55d87 0%, #5fc3e4 100%);
+ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e55d87', endColorstr='#5fc3e4', GradientType=1 );
+}
+.scroll-down {
+	position: absolute;
+	left: 50%;
+	bottom: 5vh;
+	display: block;
+	text-align: center;
+	font-size: 20px;
+	z-index: 100;
+	text-decoration: none;
+	text-shadow: 0;
+	width: 13px;
+	height: 13px;
+	border-bottom: 2px solid #fff;
+	border-right: 2px solid #fff;
+	z-index: 9;
+	-webkit-transform: translate(-50%, 0%) rotate(45deg);
+	-moz-transform: translate(-50%, 0%) rotate(45deg);
+	transform: translate(-50%, 0%) rotate(45deg);
+	-webkit-animation: fade_move_down 2s ease-in-out infinite;
+	-moz-animation: fade_move_down 2s ease-in-out infinite;
+	animation: fade_move_down 2s ease-in-out infinite;
+}
+
+/*animated scroll arrow animation*/
+@-webkit-keyframes fade_move_down {
+ 0% {
+-webkit-transform:translate(0, -10px) rotate(45deg);
+opacity: 0;
+}
+ 50% {
+opacity: 1;
+}
+ 100% {
+-webkit-transform:translate(0, 10px) rotate(45deg);
+opacity: 0;
+}
+}
+@-moz-keyframes fade_move_down {
+ 0% {
+-moz-transform:translate(0, -10px) rotate(45deg);
+opacity: 0;
+}
+ 50% {
+opacity: 1;
+}
+ 100% {
+-moz-transform:translate(0, 10px) rotate(45deg);
+opacity: 0;
+}
+}
+@keyframes fade_move_down {
+ 0% {
+transform:translate(0, -10px) rotate(45deg);
+opacity: 0;
+}
+ 50% {
+opacity: 1;
+}
+ 100% {
+transform:translate(0, 10px) rotate(45deg);
+opacity: 0;
+}
+}
+
+
+
+
+/*--------------------*/
+/* HOME WHY US SECTION */
+/*--------------------*/
+
+#aboutus{
+  float: left;
+  display: inline;
+  width: 100%;
+ 
+  color: white;
+
+}
+.whyus_top{
+  float: left;
+  display: inline;
+  width: 100%;
+  background-color: #313b3d;
+  padding: 60px 0px; 
+
+}
+.single_whyus_top{
+  float: left;  
+  display: inline;  
+  width: 100%;
+  text-align: center;
+}
+.title_area{
+  float: left;  
+  display: inline;  
+  width: 100%; 
+  text-align: center;
+  margin-bottom: 40px;  
+}
+.title_area span{
+  display: inline-block;  
+  text-align: center; 
+  height: 5px;    
+  width: 50px;
+}
+.title_two {
+  padding-bottom: 0;
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
+  color: white;
+}
+.title_three{
+  margin-top: 20px;
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
+  color: black;
+}
+.whyus_icon{
+  border-radius: 150px;
+  color: #ffffff;
+  display: inline-block;
+  height: 150px;  
+  text-align: center;
+  width: 150px;
+}
+.whyus_icon span{
+  display: inline-block;
+  font-size: 70px;
+  height: 100%;
+  line-height: 160px;
+  width: 100%;
+  -webkit-transition:   all 0.5s;
+  -o-transition:  all 0.5s;
+  transition:   all 0.5s;
+}
+.single_whyus_top:hover .whyus_icon span{
+  transform:scale(0.9);
+}
+.single_whyus_top>h3{
+  font-size: 18px;
+  font-weight: bold;
+}
+.single_whyus_top>p{
+  font-size: 13px;
+}
+.whyus_bottom{
+  float: left;
+  display: inline;
+  width: 100%;
+  min-height: 350px;
+  padding: 85px 0px;
+  background-image: url(img/skills_bg.jpg);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  position: relative;
+  -webkit-background-size: cover;
+  background-size: cover;  
+}
+.slider_overlay {
+  background: none repeat scroll 0 0 #242434;
+  height: 100%;
+  opacity: 0.8;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+  z-index: 9;
+}
+.skills{
+  position: relative;
+  z-index: 999;
+}
+
+.heading h3 {
+  color: #fff;
+  display: inline-block;
+  float: left;
+  font-size: 40px;
+  margin: 0 0 40px;
+  padding-bottom: 10px;
+  text-transform: uppercase;
+  font-weight: bold;
+  line-height: 40px;
+}
+div[data-dimension] {
+  float: none;
+  margin: 0 auto;
+}
+.circle-text{
+  color: #fff;
+}
+.single_skill{
+  float: left;
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+.single_skill > h4 {
+  color: #ffffff;
+  font-size: 20px;  
+}
