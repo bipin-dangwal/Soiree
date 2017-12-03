@@ -11,7 +11,7 @@ add_action( 'wp_enqueue_scripts', 'enqueue_styles' );
 function enqueue_javascripts(){
 wp_enqueue_script( 'bootstrap-js','https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', array('jquery'), false, false );
 wp_enqueue_script( 'jquery-js','https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js', array('jquery'), false, false );
-wp_enqueue_script( 'ajquery-js','https://code.jquery.com/jquery-3.2.1.min.js', array('jquery'), false, true );
+wp_enqueue_script( 'ajquery-js','https://code.jquery.com/jquery-3.2.1.min.js', array('jquery'), false, false );
 wp_enqueue_script( 'main-js', get_template_directory_uri() . '/main.js', array('jquery'), false, false );
 
 }
@@ -89,6 +89,8 @@ function guest_init() {
         // 'menu_icon' => 'dashicons-products',
         'supports' => array(
             'title',
+
+
             
         )
 
@@ -184,6 +186,22 @@ function Events_meta_save( $post_id ) {
      if ( isset( $_POST[ 'event_venue_text' ] ) ) {
         update_post_meta( $post_id, 'Event Menu', sanitize_text_field( $_POST[ 'event_venue_text' ] ) );
     }
+     global $wpdb;  
+
+
+      $the_posts = get_posts(array('post_type' => 'guest'));
+
+      foreach ($the_posts as $the) {
+
+       $mylink = $wpdb->get_row( "SELECT * FROM event_guest_list WHERE guest_id=$the->ID AND event_id= $post_id" );
+        if($mylink->guest_id!=$the->ID||($mylink->event_id!=$post_id))
+       { $wpdb->insert( 'event_guest_list', array(
+    'event_id' => $post_id   ,
+    'guest_id' => $the->ID,
+    'status' => 'pending'
+) ); }
+      }
+
 
 }
     add_action( 'save_post', 'Events_meta_save' );
@@ -249,7 +267,12 @@ function accept_reject($post_id){
     update_post_meta( $post_id, 'save_guest_email', sanitize_text_field( $_POST[ 'requesting_guest_Email_text' ] ) );
     update_post_meta( $post_id, 'save_guest_no', sanitize_text_field( $_POST[ 'requesting_guest_Mobile_text' ] ) );
     update_post_meta( $post_id, 'save_guest_gender', sanitize_text_field( $_POST[ 'request_gender' ] ) );
+
     }
+    // else{
+    //    echo "error"; 
+    // }
+
 }
 
 add_action('save_post', 'accept_reject' );
@@ -406,7 +429,7 @@ function save_guest_meta_save( $post_id ) {
 function form_submit(){
   
   
-         $inputname = $_POST['inputname']; 
+     $inputname = $_POST['inputname']; 
      $phonenumber =$_POST['phonenumber'];
      $inputemail=$_POST['inputEmail'];
      $guest_gender= $_POST['request_gender'];
@@ -415,17 +438,17 @@ function form_submit(){
 $post_id = wp_insert_post(array (
    'post_type' => 'request_guest',
    'post_title' => $inputname,
-   'post_content' => $phonenumber,
-   'post_status' => 'publish',
-   'comment_status' => 'closed',   // if you prefer
-   'ping_status' => 'closed',  
+   'meta_input' => array(
+    'requesting_guest_name' => $inputname,
+    'requesting_guest_email' => $inputemail,
+    'requesting_guest_no' => $phonenumber,
+    'requesting_guest_gender' => $guest_gender,
+    
+)
    ));
- update_post_meta( $post_id, 'requesting_guest_name', sanitize_text_field( $_POST[ 'inputname' ] ) );
- update_post_meta( $post_id, 'requesting_guest_email', sanitize_text_field( $_POST[ 'inputEmail' ] ) );
- update_post_meta( $post_id, 'requesting_guest_no', sanitize_text_field( $_POST[ 'phonenumber' ] ) );
- update_post_meta( $post_id, 'requesting_guest_gender', sanitize_radio_button($_POST[ 'request_gender' ]) );
 
-    echo "Your request has been successfully saved";
+
+    echo'<div class="alert alert-info" role="alert">"Thankyou <b>' .$inputname. '</b> your request is under process, we will get back to you in a while."</div>';
 
                     wp_die();
     
@@ -435,14 +458,38 @@ add_action('wp_ajax_nopriv_form_submit', 'form_submit');
 
 
 
+function event_guestlist_page(){
+    add_menu_page( 'event_guest', 'Guestlist', 'read', 'event_guests','event_guest_list');
+}
+
+add_action('admin_menu', 'event_guestlist_page');
+
+function event_guest_list(){
+
+    include 'event_guest_ui.php';
+}
 
 
+// function mynewproduct($post){
+   
+// global $wpdb;  
 
 
+//       $the_posts = get_posts(array('post_type' => 'guest'));
 
+//       foreach ($the_posts as $the) {
 
+//        $mylink = $wpdb->get_row( "SELECT * FROM event_guest_list WHERE guest_id=$the->ID AND event_id=$post" );
+//         if($mylink->guest_id!=$the->ID||($mylink->event_id!=$post))
+//        { $wpdb->insert( 'event_guest_list', array(
+//     'event_id' => $post   ,
+//     'guest_id' => $the->ID,
+//     'status' => 'pending'
+// ) ); }
+//       }
 
-
+// }
+// add_action( 'save_post_events', 'mynewproduct' );
 
 
 

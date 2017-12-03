@@ -22,7 +22,7 @@
             <li class="active"><a href="<?php echo home_url(); ?>">Home</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a data-toggle="modal" data-target="#eventModal"><span class="glyphicon glyphicon-user"></span> Request invitte</a></li>
+            <li><a data-toggle="modal" data-target="#eventModal" id="request"><span class="glyphicon glyphicon-user"></span> Request invitte</a></li>
             <li><a href="<?php echo get_post_type_archive_link( 'events' ); ?>"><span class="glyphicon glyphicon-calendar"></span> Events</a></li>
             <li><a href="<?php echo admin_url(); ?>
 "><span class="glyphicon glyphicon-log-in"></span> Admin Login</a></li>

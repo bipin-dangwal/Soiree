@@ -2,14 +2,18 @@ console.log('hello');
 
 
 
-$(document).ready(function()
+jQuery(document).ready(function()
 {
-	$("#submit_request").on("click",function()
+
+		
+
+
+
+	jQuery("#submit_request").on("click",function()
 	{
 		console.log('hellddo');
 
-		
-		var requestForm= $('#request_form');
+		var requestForm= jQuery('#request_form');
         var dataString = "action=form_submit&"+requestForm.serialize();
 		var ajaxurl = 'http://localhost/wordpress/wp-admin/admin-ajax.php';
 		var actions ='form_submit';
@@ -27,16 +31,20 @@ $(document).ready(function()
 			url: ajaxurl, 
 			data: dataString,
 			cache: false,
-			success: function(response)
+			success: function(result)
 			{
-				console.log(response);
-				("request_form").hide();
+				
+				console.log(result);
+				$('#request_form').trigger("reset");			
+				$( "#msg" ).html(result);
+
 			}	
 		});	
 		}		
 		
 
 	});	
+	
 });
 
 
